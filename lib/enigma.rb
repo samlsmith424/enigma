@@ -17,4 +17,8 @@ class Enigma
     numbers << number[3..4].to_i
     numbers
   end
+
+  def current_date
+    Time.now.strftime("%d/%m/%y").gsub('/', "")
+  end
 end
