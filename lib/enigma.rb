@@ -21,4 +21,9 @@ class Enigma
   def current_date
     Time.now.strftime("%d/%m/%y").gsub('/', "")
   end
+
+  def offset_shift(date)
+    shift = current_date.to_i ** 2
+    shift.to_s[-4..-1].split('').map(&:to_i)
+  end
 end
