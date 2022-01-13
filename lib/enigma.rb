@@ -26,4 +26,13 @@ class Enigma
     shift = current_date.to_i ** 2
     shift.to_s[-4..-1].split('').map(&:to_i)
   end
+
+  def final_shift(keys, offsets)
+    shifts = []
+    shifts << keys[0] + offsets[0]
+    shifts << keys[1] + offsets[1]
+    shifts << keys[2] + offsets[2]
+    shifts << keys[3] + offsets[3]
+    shifts
+  end
 end
