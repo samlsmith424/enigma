@@ -28,4 +28,8 @@ RSpec.describe Enigma do
   it 'can make offsets from the current date' do
     expect(enigma.offset_shift("130122")).to eq([4, 8, 8, 4])
   end
+
+  it 'can make a final shift' do
+    expect(enigma.final_shift([02, 27, 71, 15], [4, 8, 8, 4])).to eq([6, 35, 79, 19])
+  end
 end
