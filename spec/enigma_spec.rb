@@ -20,4 +20,10 @@ RSpec.describe Enigma do
   it 'can generate keys from five digit number' do
     expect(enigma.key_shift("02715")).to eq([02, 27, 71, 15])
   end
+
+  it 'can generate the current date' do
+    expect(enigma.current_date).to eq("130122")
+  end
+
+  
 end
