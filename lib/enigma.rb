@@ -33,7 +33,7 @@ class Enigma
     shift.to_s[-4..-1].split('').map(&:to_i)
   end
 
-  def final_shift(number_key, date_key) 
+  def final_shift(number_key, date_key)
     keys = key_shift(number_key)
     offsets = offset_shift(date_key)
     shifts = []
@@ -44,10 +44,11 @@ class Enigma
     shifts
   end
 
-  def encrypt(string, key, date)
+  def encrypt(string, key = number_key, date = date_key)
     hash = {:encryption => "", :key => key, :date => date}
     letters = string.split(//)
     letters.each_with_index do |character, index|
+      character.downcase!
       if @character_set.include?(character) != true
         hash[:encryption] += character
       elsif index % 4 == 0
