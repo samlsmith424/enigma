@@ -66,15 +66,36 @@ RSpec.describe Enigma do
     expect(enigma.encrypt("sam smith", "12345", "081292")).to eq(expected)
   end
 
-  it 'can encrypt a string with an a generated key' do
+  it 'can encrypt a string with an a random key generated' do
     expect(enigma.encrypt("hello world", "040895")).to be_a(Hash)
   end
 
-  it 'can encrypt a string with a generated date' do
+  it 'can encrypt a string with a todays date generated' do
     expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
   end
 
   it 'can encrypt a string with generated key and date' do
     expect(enigma.encrypt("hello world")).to be_a(Hash)
+  end
+
+  it 'can decrypt a string' do
+    expected = {
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+
+    expected_2 = {
+      decryption: "sam smith",
+      key: "12345",
+      date: "081292"
+    }
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
+    expect(enigma.decrypt("mzzvmkvob", "12345", "081292")).to eq(expected_2)
+  end
+
+  it 'can decrypt a string with todays date generated' do
+    encrypted = enigma.encrypt("hello world", "02715")
+    expect(enigma.decrypt(encrypted[:encryption], "02715")).to be_a(Hash)
   end
 end
