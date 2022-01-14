@@ -63,4 +63,24 @@ class Enigma
     end
     hash
   end
+
+  def decrypt(string, key, date = date_key)
+    hash = {:decryption => "", :key => key, :date => date}
+    letters = string.split(//)
+    letters.each_with_index do |character, index|
+      if @character_set.include?(character) != true
+        hash[:decryption] += character
+      elsif index % 4 == 0
+        hash[:decryption] += @character_set.fetch(((@character_set.index(character) - final_shift(key, date)[0]) % 27))
+      elsif index % 4 == 1
+        hash[:decryption] += @character_set.fetch(((@character_set.index(character) - final_shift(key, date)[1]) % 27))
+      elsif index % 4 == 2
+        hash[:decryption] += @character_set.fetch(((@character_set.index(character) - final_shift(key, date)[2]) % 27))
+      elsif index % 4 == 3
+        hash[:decryption] += @character_set.fetch(((@character_set.index(character) - final_shift(key, date)[3]) % 27))
+      end
+    end
+    hash
+  end
+
 end
