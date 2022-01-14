@@ -22,14 +22,27 @@ RSpec.describe Enigma do
   end
 
   it 'can generate the current date' do
+    allow(Date).to receive(:today).and_return(Date.new(2022, 01, 13))
     expect(enigma.current_date).to eq("130122")
   end
 
   it 'can make offsets from the current date' do
-    expect(enigma.offset_shift("130122")).to eq([4, 8, 8, 4])
+    allow(Date).to receive(:today).and_return(Date.new(2022, 01, 13))
+    expect(enigma.offset_shift).to eq([4, 8, 8, 4])
   end
 
-  it 'can make a final shift' do
-    expect(enigma.final_shift([02, 27, 71, 15], [4, 8, 8, 4])).to eq([6, 35, 79, 19])
+  it 'can make a final shift from adding the key and offset shifts' do
+    enigma_with_key = Enigma.new("02715")
+    expect(enigma_with_key.final_shift).to eq([6, 35, 79, 19])
+    # expect(enigma.final_shift([02, 27, 71, 15], [4, 8, 8, 4])).to eq([6, 35, 79, 19])
+  end
+
+  xit 'can encrypt a string' do
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 end
