@@ -54,7 +54,7 @@ RSpec.describe Enigma do
       key: "02715",
       date: "040895"
     }
-    expect(enigma.encrypt("hello world!", "02715", "040895")).to eq(expected)
+    expect(enigma.encrypt("Hello world!", "02715", "040895")).to eq(expected)
   end
 
   it 'can encrypt a different string with punctuation' do
@@ -64,5 +64,17 @@ RSpec.describe Enigma do
       date: "081292"
     }
     expect(enigma.encrypt("sam smith", "12345", "081292")).to eq(expected)
+  end
+
+  it 'can encrypt a string with an a generated key' do
+    expect(enigma.encrypt("hello world", "040895")).to be_a(Hash)
+  end
+
+  it 'can encrypt a string with a generated date' do
+    expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
+  end
+
+  it 'can encrypt a string with generated key and date' do
+    expect(enigma.encrypt("hello world")).to be_a(Hash)
   end
 end
