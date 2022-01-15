@@ -1,3 +1,5 @@
+require 'date'
+
 module Helpers
   def make_number_key
     5.times.map{rand(10)}.join
