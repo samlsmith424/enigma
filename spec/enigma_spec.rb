@@ -1,4 +1,7 @@
+require 'simplecov'
+SimpleCov.start
 require 'date'
+require './lib/helpers'
 require './lib/enigma'
 
 RSpec.describe Enigma do
