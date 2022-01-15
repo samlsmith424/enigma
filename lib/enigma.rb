@@ -1,3 +1,4 @@
+require './lib/helpers'
 class Enigma
   include Helpers
   attr_reader :character_set,
