@@ -1,6 +1,7 @@
-require './lib/helpers'
+require './lib/helpable'
+
 class Enigma
-  include Helpers
+  include Helpable
   attr_reader :character_set,
               :number_key,
               :date_key
