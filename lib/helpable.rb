@@ -2,7 +2,7 @@ require 'date'
 
 module Helpable
   def make_number_key
-    5.times.map{rand(10)}.join
+    rand(99999).to_s.rjust(5,"0")
   end
 
   def key_shift(key)
