@@ -1,4 +1,3 @@
-# require './lib/helpers'
 require './lib/enigma'
 
 enigma = Enigma.new

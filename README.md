@@ -15,7 +15,7 @@ This project uses Ruby to build a tool for cracking an encryption algorithm.
 
  * Ruby Conventions and Mechanics == 3
     * Code is properly indented and spaced
-    * Variable names are clear and efficient 
+    * Variable names are clear and efficient
     * At least one hash is implemented
 
  * TDD == 3
