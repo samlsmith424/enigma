@@ -1,6 +1,6 @@
 require_relative './spec_helper'
 require 'date'
-require './lib/helpers'
+require './lib/helpable'
 require './lib/enigma'
 
 RSpec.describe Enigma do
@@ -12,6 +12,7 @@ RSpec.describe Enigma do
 
   it 'can generate a random five digit number key' do
     expect(enigma.make_number_key).to be_a(String)
+    expect(enigma.make_number_key.size).to eq(5)
   end
 
   it 'has a character set' do
@@ -26,6 +27,7 @@ RSpec.describe Enigma do
   it 'can generate the current date' do
     allow(Date).to receive(:today).and_return(Date.new(2022, 01, 13))
     expect(enigma.current_date).to eq("130122")
+    expect(enigma.current_date.size).to eq(6)
   end
 
   it 'can make offsets from the current date' do
@@ -34,10 +36,6 @@ RSpec.describe Enigma do
   end
 
   it 'can make a final shift from adding the key and offset shifts' do
-    # enigma_with_key = Enigma.new("02715")
-    # expect(enigma_with_key.final_shift).to eq([6, 35, 79, 19])
-    # expect(enigma_with_key.final_shift).to eq([3, 27, 73, 20])
-    # expect(enigma.final_shift([02, 27, 71, 15], [1, 0, 2, 5])).to eq([3, 27, 73, 20])
     expect(enigma.final_shift("02715", "040895")).to eq([3, 27, 73, 20])
   end
 
@@ -76,7 +74,7 @@ RSpec.describe Enigma do
     expect(enigma.encrypt("hello world", "02715")).to be_a(Hash)
   end
 
-  it 'can encrypt a string with generated key and date' do
+  it 'can encrypt a string with a generated key and date' do
     expect(enigma.encrypt("hello world")).to be_a(Hash)
   end
 
